@@ -4,12 +4,12 @@ namespace common\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Group;
+use common\models\Room;
 
 /**
- * GroupSearch represents the model behind the search form of `common\models\Group`.
+ * RoomSearch represents the model behind the search form of `common\models\Room`.
  */
-class GroupSearch extends Group
+class RoomSearch extends Room
 {
     /**
      * {@inheritdoc}
@@ -17,8 +17,8 @@ class GroupSearch extends Group
     public function rules()
     {
         return [
-            [['id'], 'integer'],
-            [['title'], 'safe'],
+            [['id', 'area'], 'integer'],
+            [['title', 'uid'], 'safe'],
         ];
     }
 
@@ -40,7 +40,7 @@ class GroupSearch extends Group
      */
     public function search($params)
     {
-        $query = Group::find();
+        $query = Room::find();
 
         // add conditions that should always apply here
 
@@ -59,9 +59,11 @@ class GroupSearch extends Group
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'area' => $this->area,
         ]);
 
-        $query->andFilterWhere(['like', 'title', $this->title]);
+        $query->andFilterWhere(['like', 'title', $this->title])
+            ->andFilterWhere(['like', 'uid', $this->uid]);
 
         return $dataProvider;
     }

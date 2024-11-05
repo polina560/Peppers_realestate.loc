@@ -68,10 +68,12 @@ FontAwesomeAsset::register($this);
                 'label' => 'Таблицы',
                 'items' => [
                     ['label' => 'Апартаменты', 'url' => ['/apartment']],
+                    ['label' => 'Комнаты', 'url' => ['/room']],
                     ['label' => 'Тексты', 'url' => ['/texts']],
                     ['label' => 'Документы', 'url' => ['/documents']],
                     ['label' => 'Галереи', 'url' => ['/gallery']],
                     ['label' => 'Изображения', 'url' => ['/gallery-images']],
+                    ['label' => 'Группы текстов', 'url' => ['/group']],
                 ]
             ],
             '<li class="divider-vertical"></li>',

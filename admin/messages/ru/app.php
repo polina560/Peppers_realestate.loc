@@ -145,4 +145,16 @@ return [
     'Email is confirmed' => 'Email подтвержден',
     'Email is not confirmed' => 'Email не подтвержден',
     'Email Verified At' => 'Дата подтверждения Email',
+    'Add Title' => 'Добавить название',
+    'Add Image' => 'Добавить изображение',
+    'UID' => 'UID',
+    'Price' => 'Цена',
+    'Subtitle' => 'Дополнительное название',
+    'Key' => 'Ключ',
+    'File' => 'Файл',
+    'ID Group' => 'ID Группы',
+    'Admin Comment' => 'Комментарий администратора',
+    'Deletable' => 'Возможность удаления',
+    'Availability by API' => 'Доступность по API',
+    'Area' => 'Площадь'
 ];

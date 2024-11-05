@@ -2,6 +2,8 @@
 
 namespace common\models;
 
+use Yii;
+
 /**
  * This is the model class for table "Apartment".
  *
@@ -45,17 +47,18 @@ class Apartment extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'title' => 'Title',
-            'subtitle' => 'Subtitle',
-            'description' => 'Description',
-            'price' => 'Price',
-            'floor' => 'Floor',
-            'img' => 'Img',
-            'address' => 'Address',
-            'add_title' => 'Add Title',
-            'add_img' => 'Add Img',
-            'API_flag' => 'Api Flag',
+            'id' => Yii::t('app', 'ID'),
+            'title' => Yii::t('app', 'Title'),
+            'subtitle' => Yii::t('app', 'Subtitle'),
+            'description' => Yii::t('app', 'Description'),
+            'price' => Yii::t('app', 'Price'),
+            'floor' => Yii::t('app', 'Floor'),
+            'img' => Yii::t('app', 'Img'),
+            'address' => Yii::t('app', 'Address'),
+            'add_title' => Yii::t('app', 'Add Title'),
+            'add_img' => Yii::t('app', 'Add Image'),
+            'API_flag' => Yii::t('app', 'Availability by API'),
+
         ];
     }
 }

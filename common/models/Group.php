@@ -2,6 +2,8 @@
 
 namespace common\models;
 
+use Yii;
+
 /**
  * This is the model class for table "Group".
  *
@@ -34,8 +36,8 @@ class Group extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'title' => 'Title',
+            'id' => Yii::t('app', 'ID'),
+            'title' => Yii::t('app', 'Title'),
         ];
     }
 }

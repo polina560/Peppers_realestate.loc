@@ -2,16 +2,16 @@
 
 namespace admin\controllers;
 
-use common\models\Group;
-use common\models\GroupSearch;
+use common\models\Room;
+use common\models\RoomSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * GroupController implements the CRUD actions for Group model.
+ * RoomController implements the CRUD actions for Room model.
  */
-class GroupController extends Controller
+class RoomController extends Controller
 {
     /**
      * @inheritDoc
@@ -32,13 +32,13 @@ class GroupController extends Controller
     }
 
     /**
-     * Lists all Group models.
+     * Lists all Room models.
      *
      * @return string
      */
     public function actionIndex()
     {
-        $searchModel = new GroupSearch();
+        $searchModel = new RoomSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
@@ -48,7 +48,7 @@ class GroupController extends Controller
     }
 
     /**
-     * Displays a single Group model.
+     * Displays a single Room model.
      * @param int $id ID
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
@@ -61,13 +61,13 @@ class GroupController extends Controller
     }
 
     /**
-     * Creates a new Group model.
+     * Creates a new Room model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
-        $model = new Group();
+        $model = new Room();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
@@ -83,7 +83,7 @@ class GroupController extends Controller
     }
 
     /**
-     * Updates an existing Group model.
+     * Updates an existing Room model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return string|\yii\web\Response
@@ -103,7 +103,7 @@ class GroupController extends Controller
     }
 
     /**
-     * Deletes an existing Group model.
+     * Deletes an existing Room model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return \yii\web\Response
@@ -117,15 +117,15 @@ class GroupController extends Controller
     }
 
     /**
-     * Finds the Group model based on its primary key value.
+     * Finds the Room model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return Group the loaded model
+     * @return Room the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Group::findOne(['id' => $id])) !== null) {
+        if (($model = Room::findOne(['id' => $id])) !== null) {
             return $model;
         }
 

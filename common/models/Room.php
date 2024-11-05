@@ -2,6 +2,8 @@
 
 namespace common\models;
 
+use Yii;
+
 /**
  * This is the model class for table "Room".
  *
@@ -37,10 +39,11 @@ class Room extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'title' => 'Title',
-            'area' => 'Area',
-            'uid' => 'Uid',
+            'id' => Yii::t('app', 'ID'),
+            'title' => Yii::t('app', 'Title'),
+            'area' => Yii::t('app', 'Area'),
+            'uid' => Yii::t('app', 'UID'),
+
         ];
     }
 }

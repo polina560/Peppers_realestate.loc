@@ -2,6 +2,8 @@
 
 namespace common\models;
 
+use Yii;
+
 /**
  * This is the model class for table "Documents".
  *
@@ -36,9 +38,10 @@ class Documents extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'key' => 'Key',
-            'file' => 'File',
+            'id' => Yii::t('app', 'ID'),
+            'key' => Yii::t('app', 'Key'),
+            'file' => Yii::t('app', 'File'),
+
         ];
     }
 }

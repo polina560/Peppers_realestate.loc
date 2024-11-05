@@ -2,6 +2,8 @@
 
 namespace common\models;
 
+use Yii;
+
 /**
  * This is the model class for table "Texts".
  *
@@ -41,12 +43,13 @@ class Texts extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'key' => 'Key',
-            'id_group' => 'Id Group',
-            'text' => 'Text',
-            'admin_comment' => 'Admin Comment',
-            'deletable' => 'Deletable',
+            'id' => Yii::t('app', 'ID'),
+            'key' => Yii::t('app', 'Key'),
+            'id_group' => Yii::t('app', 'ID Group'),
+            'text' => Yii::t('app', 'Text'),
+            'admin_comment' => Yii::t('app', 'Admin Comment'),
+            'deletable' => Yii::t('app', 'Deletable'),
+
         ];
     }
 }
