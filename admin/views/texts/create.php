@@ -5,9 +5,9 @@ use yii\helpers\Html;
 /** @var yii\web\View $this */
 /** @var \common\models\Texts $model */
 
-$this->title = 'Create Texts';
-$this->params['breadcrumbs'][] = ['label' => 'Texts', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = Yii::t('app', 'Create Text');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Texts'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = Yii::t('app', $this->title) ;
 ?>
 <div class="texts-create">
 

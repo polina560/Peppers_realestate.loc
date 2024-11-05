@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /** @var common\models\Apartment $model */
 
 $this->title = 'Create Apartment';
-$this->params['breadcrumbs'][] = ['label' => 'Apartments', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Apartments') , 'url' => ['index']];
+$this->params['breadcrumbs'][] =  Yii::t('app', $this->title);
 ?>
 <div class="apartment-create">
 

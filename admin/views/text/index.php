@@ -11,7 +11,7 @@ use yii\helpers\Html;
  */
 
 $this->title = Yii::t('app', 'Texts');
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = Yii::t('app', $this->title);
 ?>
 <div class="text-index">
 

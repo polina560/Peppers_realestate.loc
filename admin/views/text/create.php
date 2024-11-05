@@ -9,7 +9,7 @@ use yii\bootstrap5\Html;
 
 $this->title = Yii::t('app', 'Create Text');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Texts'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = Yii::t('app', $this->title) ;
 ?>
 <div class="text-create">
 

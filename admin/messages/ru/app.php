@@ -156,5 +156,11 @@ return [
     'Admin Comment' => 'Комментарий администратора',
     'Deletable' => 'Возможность удаления',
     'Availability by API' => 'Доступность по API',
-    'Area' => 'Площадь'
+    'Area' => 'Площадь',
+    'Apartments' => 'Квартиры',
+    'Create Apartment' => 'Добавить квартиру',
+    'Rooms' => 'Комнаты',
+    'Create Rooms' => 'Добавить комнату',
+    'Create Text' => 'Добавить текст',
+    'Text' => 'Текст'
 ];

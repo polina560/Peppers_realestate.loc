@@ -5,10 +5,11 @@ use yii\helpers\Html;
 /** @var yii\web\View $this */
 /** @var common\models\Apartment $model */
 
-$this->title = 'Update Apartment: ' . $model->title;
-$this->params['breadcrumbs'][] = ['label' => 'Apartments', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->title =  Yii::t('app', 'Update Apartment: ' . $model->title) ;
+
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Apartments') , 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', $model->title) , 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] =  Yii::t('app', 'Update') ;
 ?>
 <div class="apartment-update">
 

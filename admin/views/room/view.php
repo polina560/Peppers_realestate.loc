@@ -6,9 +6,9 @@ use yii\widgets\DetailView;
 /** @var yii\web\View $this */
 /** @var common\models\Room $model */
 
-$this->title = $model->title;
-$this->params['breadcrumbs'][] = ['label' => 'Rooms', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->title =  Yii::t('app', $model->title); $model->title;
+$this->params['breadcrumbs'][] = ['label' =>  Yii::t('app', 'Room'), 'url' => ['index']];
+$this->params['breadcrumbs'][] =  Yii::t('app', $this->title);
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="room-view">
