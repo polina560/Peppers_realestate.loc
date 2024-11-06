@@ -4,6 +4,8 @@ namespace admin\controllers;
 
 use common\models\Apartment;
 use common\models\ApartmentSearch;
+use common\models\Room;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -57,6 +59,22 @@ class ApartmentController extends Controller
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
+        ]);
+    }
+
+    public function actionRooms($id)
+    {
+
+        $apartment = $this->findModel($id);
+        $dataProvider = new ActiveDataProvider([
+            'query' => Room::find()->where(['id_apartment' => $id]),
+
+        ]);
+
+
+        return $this->render('rooms', [
+            'apartment' => $apartment,
+            'dataProvider' => $dataProvider
         ]);
     }
 

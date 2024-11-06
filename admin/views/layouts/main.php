@@ -67,7 +67,7 @@ FontAwesomeAsset::register($this);
             [
                 'label' => 'Таблицы',
                 'items' => [
-                    ['label' => 'Апартаменты', 'url' => ['/apartment']],
+                    ['label' => 'Квартиры', 'url' => ['/apartment']],
                     ['label' => 'Комнаты', 'url' => ['/room']],
                     ['label' => 'Тексты', 'url' => ['/texts']],
                     ['label' => 'Документы', 'url' => ['/documents']],

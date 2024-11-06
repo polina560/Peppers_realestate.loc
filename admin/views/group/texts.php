@@ -39,7 +39,7 @@ $this->params['breadcrumbs'][] = Yii::t('app', $this->title);
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Texts $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
-                 }
+                }
             ],
         ],
     ]); ?>

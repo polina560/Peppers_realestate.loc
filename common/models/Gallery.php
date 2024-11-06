@@ -42,4 +42,12 @@ class Gallery extends \yii\db\ActiveRecord
 
         ];
     }
+
+    public function getGalleryNameArray()
+    {
+        $names = self::find()->select(['id', 'name'])->asArray()->all();
+
+
+        return array_column($names, 'name', 'id');
+    }
 }

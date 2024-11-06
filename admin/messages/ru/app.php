@@ -169,14 +169,24 @@ return [
     'Image' => 'Изображение',
     'ID Gallery' => 'ID Галереи',
     'Groups' => 'Группы',
-    'Create Group' => 'Создать группу',
-    'Update Apartment: ' => 'Обноваить апартаменты: ',
-    'Update Room: ' => 'Обноваить комнату: ',
-    'Update Texts: ' => 'Обноваить текст: ',
-    'Update Documents: ' => 'Обноваить докмент: ',
-    'Update Gallery: ' => 'Обноваить галерею: ',
-    'Update Gallery Images: ' => 'Обноваить изображение: ',
-    'Update Group: ' => 'Обноваить группу: ',
+    'Create Group' => 'Добавить группу',
+    'Create Room' => 'Добавить комнату',
+    'Update Apartment: ' => 'Обновить квартиру: ',
+    'Update Room: ' => 'Обновить комнату: ',
+    'Update Texts: ' => 'Обновить текст: ',
+    'Update Documents: ' => 'Обновить докмент: ',
+    'Update Gallery: ' => 'Обновить галерею: ',
+    'Update Gallery Images: ' => 'Обновить изображение: ',
+    'Update Group: ' => 'Обновить группу: ',
+    'Create Documents' => 'Добавить документ',
+    'Documents' => 'Документы',
+    'Address' => 'Адрес',
+    'Floor' => 'Этаж',
+    'Additional Image' => 'Дополнительоне изображение',
+    'Yes' => 'Да',
+    'No' => 'Нет',
+    'ID Apartment' => 'ID Квартиры'
+
 
 
 

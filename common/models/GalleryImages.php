@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "GalleryImages".
@@ -15,6 +16,7 @@ use Yii;
  */
 class GalleryImages extends \yii\db\ActiveRecord
 {
+    public UploadedFile|string|null $imageFile = null;
     /**
      * {@inheritdoc}
      */
@@ -30,9 +32,11 @@ class GalleryImages extends \yii\db\ActiveRecord
     {
         return [
             [['id_gallery'], 'integer'],
-            [['img'], 'required'],
+            [['imageFile'], 'required'],
             [['text'], 'string'],
             [['img', 'title'], 'string', 'max' => 255],
+            [['imageFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
+
         ];
     }
 
@@ -47,7 +51,36 @@ class GalleryImages extends \yii\db\ActiveRecord
             'img' => Yii::t('app', 'Image'),
             'title' => Yii::t('app', 'Title'),
             'text' => Yii::t('app', 'Text'),
+            'imageFile' => Yii::t('app', 'Image'),
+
 
         ];
+    }
+
+    public function beforeValidate(): bool
+    {
+        $this->imageFile = UploadedFile::getInstance($this, 'imageFile');
+        return parent::beforeValidate();
+    }
+
+    public function beforeSave($insert): bool
+    {
+        if ($this->imageFile instanceof UploadedFile) {
+            if (!$insert && !empty($this->img)) {
+                // удалить старую
+                $public = Yii::getAlias('@public');
+                $oldImagePath = $public . $this->img;
+                if (file_exists($oldImagePath)) {
+                    unlink($oldImagePath); // удаление файла
+                }
+            }
+            $randomName = Yii::$app->security->generateRandomString(8);
+            $public = Yii::getAlias('@public');
+            $path = '/uploads/' . $randomName . '.' . $this->imageFile->extension;
+            $this->imageFile->saveAs($public . $path);
+            $this->img = $path;
+        }
+
+        return parent::beforeSave($insert);
     }
 }

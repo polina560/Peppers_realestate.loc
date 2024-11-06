@@ -12,11 +12,14 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
+    <?php $id_apartment = new \common\models\Apartment();?>
+    <?= $form->field($model, 'id_apartment')->dropDownList($id_apartment->getApartNameArray()); ?>
+
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'area')->textInput() ?>
 
-    <?= $form->field($model, 'uid')->textInput(['maxlength' => true]) ?>
+<!--    --><?php //= $form->field($model, 'uid')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>

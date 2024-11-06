@@ -1,24 +1,24 @@
 <?php
 
-use common\models\Texts;
-use yii\grid\ActionColumn;
-use yii\grid\GridView;
+use common\models\ApartRoom;
 use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\grid\ActionColumn;
+use yii\grid\GridView;
 
 /** @var yii\web\View $this */
-/** @var \common\models\TextsSearch $searchModel */
+/** @var common\models\ApartRoomSerch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = Yii::t('app', 'Texts');
-$this->params['breadcrumbs'][] = Yii::t('app', $this->title);
+$this->title = 'Apart Rooms';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="texts-index">
+<div class="apart-room-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Text'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Apart Room', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -30,14 +30,11 @@ $this->params['breadcrumbs'][] = Yii::t('app', $this->title);
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'key',
-            'id_group',
-            'text:html',
-            'admin_comment',
-            //'deletable',
+            'id_apartment',
+            'id_room',
             [
                 'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, Texts $model, $key, $index, $column) {
+                'urlCreator' => function ($action, ApartRoom $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
                  }
             ],

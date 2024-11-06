@@ -28,7 +28,8 @@ class Room extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['area'], 'integer'],
+            [['id_apartment'], 'required'],
+            [['area', 'id_apartment'], 'integer'],
             [['title', 'uid'], 'string', 'max' => 255],
         ];
     }
@@ -43,7 +44,27 @@ class Room extends \yii\db\ActiveRecord
             'title' => Yii::t('app', 'Title'),
             'area' => Yii::t('app', 'Area'),
             'uid' => Yii::t('app', 'UID'),
+            'id_apartment' => Yii::t('app', 'ID Apartment'),
 
         ];
+    }
+
+
+
+    public function beforeSave($insert): bool
+    {
+
+
+        $item = \common\models\Apartment::find()->where(['id' => $this->id_apartment])->one();
+        if(!empty($item->add_img)) {
+            $this->uid = $item->add_img;
+        }
+
+        return parent::beforeSave($insert);
+    }
+
+    public function getApartments()
+    {
+        return $this->hasMany(Apartment::class, ['id' => 'id_apartment']);
     }
 }

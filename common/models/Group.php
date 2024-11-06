@@ -40,4 +40,12 @@ class Group extends \yii\db\ActiveRecord
             'title' => Yii::t('app', 'Title'),
         ];
     }
+
+    public function getNameArray()
+    {
+        $names = self::find()->select(['id', 'title'])->asArray()->all();
+
+
+        return array_column($names, 'title', 'id');
+    }
 }

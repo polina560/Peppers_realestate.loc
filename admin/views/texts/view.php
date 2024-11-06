@@ -31,10 +31,22 @@ $this->params['breadcrumbs'][] = Yii::t('app', $this->title);
         'attributes' => [
             'id',
             'key',
-            'id_group',
-            'text:ntext',
+                [
+                    'attribute'=>'id_group',
+                    'value'=>function($model){
+                        $item = \common\models\Group::find()->where(['id' => $model->id_group])->one();
+                        return $item->title;
+                    },
+                ],
+            'text:html',
             'admin_comment',
-            'deletable',
+            [
+                'attribute'=>'deletable',
+                'value'=>function($model){
+                    $item = new \common\models\Flag();
+                    return $item->getDeletableName($model->deletable);
+                }
+            ],
         ],
     ]) ?>
 

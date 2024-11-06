@@ -22,15 +22,22 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'floor')->textInput() ?>
 
-    <?= $form->field($model, 'img')->textInput(['maxlength' => true]) ?>
+<!--    --><?php //= $form->field($model, 'img')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'imageFile')->fileInput() ?>
 
     <?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'add_title')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'add_img')->textInput(['maxlength' => true]) ?>
+<!--    --><?php //= $form->field($model, 'add_img')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'addImageFile')->fileInput() ?>
 
-    <?= $form->field($model, 'API_flag')->textInput() ?>
+<!--    --><?php //= $form->field($model, 'API_flag')->textInput() ?>
+    <?php
+    $const = new \common\models\Flag();?>
+    <?=
+    $form->field($model, 'API_flag')->dropDownList($const->getConstants());
+    ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>

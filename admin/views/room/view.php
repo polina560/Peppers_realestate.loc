@@ -31,6 +31,14 @@ $this->params['breadcrumbs'][] = Yii::t('app', $this->title);
         'attributes' => [
             'id',
             'title',
+
+             [
+             'attribute'=>'id_apartment',
+                'value'=>function($model){
+                    $item = \common\models\Apartment::find()->where(['id' => $model->id_apartment])->one();
+                    return $item->title;
+                }
+                ],
             'area',
             'uid',
         ],

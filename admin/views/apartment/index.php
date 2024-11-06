@@ -32,7 +32,18 @@ $this->params['breadcrumbs'][] =  Yii::t('app', $this->title);?>
             'title',
             'subtitle',
             'description',
+
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{rooms}',
+                'buttons' => [
+                    'rooms' => function ($url, $model, $key) {
+                        return Html::a('Комнаты', ['apartment/rooms', 'id' => $model->id]);
+                    },
+                ],
+            ],
             'price',
+
             //'floor',
             //'img',
             //'address',

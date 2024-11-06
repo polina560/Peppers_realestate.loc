@@ -2,18 +2,16 @@
 
 namespace admin\controllers;
 
-use common\models\Group;
-use common\models\GroupSearch;
-use common\models\Texts;
-use yii\data\ActiveDataProvider;
+use common\models\ApartRoom;
+use common\models\ApartRoomSerch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * GroupController implements the CRUD actions for Group model.
+ * ApartRoomController implements the CRUD actions for ApartRoom model.
  */
-class GroupController extends Controller
+class ApartRoomController extends Controller
 {
     /**
      * @inheritDoc
@@ -34,13 +32,13 @@ class GroupController extends Controller
     }
 
     /**
-     * Lists all Group models.
+     * Lists all ApartRoom models.
      *
      * @return string
      */
     public function actionIndex()
     {
-        $searchModel = new GroupSearch();
+        $searchModel = new ApartRoomSerch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
@@ -50,7 +48,7 @@ class GroupController extends Controller
     }
 
     /**
-     * Displays a single Group model.
+     * Displays a single ApartRoom model.
      * @param int $id ID
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
@@ -62,30 +60,14 @@ class GroupController extends Controller
         ]);
     }
 
-    public function actionTexts($id)
-    {
-
-        $group = $this->findModel($id);
-        $dataProvider = new ActiveDataProvider([
-            'query' => Texts::find()->where(['id_group' => $id]),
-
-        ]);
-
-
-        return $this->render('texts', [
-            'group' => $group,
-            'dataProvider' => $dataProvider
-        ]);
-    }
-
     /**
-     * Creates a new Group model.
+     * Creates a new ApartRoom model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
-        $model = new Group();
+        $model = new ApartRoom();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
@@ -101,7 +83,7 @@ class GroupController extends Controller
     }
 
     /**
-     * Updates an existing Group model.
+     * Updates an existing ApartRoom model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return string|\yii\web\Response
@@ -121,7 +103,7 @@ class GroupController extends Controller
     }
 
     /**
-     * Deletes an existing Group model.
+     * Deletes an existing ApartRoom model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return \yii\web\Response
@@ -135,15 +117,15 @@ class GroupController extends Controller
     }
 
     /**
-     * Finds the Group model based on its primary key value.
+     * Finds the ApartRoom model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return Group the loaded model
+     * @return ApartRoom the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Group::findOne(['id' => $id])) !== null) {
+        if (($model = ApartRoom::findOne(['id' => $id])) !== null) {
             return $model;
         }
 

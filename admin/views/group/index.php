@@ -25,18 +25,29 @@ $this->params['breadcrumbs'][] = Yii::t('app', $this->title);
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
             'title',
             [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{rooms}',
+                'buttons' => [
+                    'rooms' => function ($url, $model) {
+                        return Html::a('Тексты', ['group/texts', 'id' => $model->id]);
+                    },
+                ],
+            ],
+            [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Group $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
                  }
             ],
+
+
+
         ],
     ]); ?>
 

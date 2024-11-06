@@ -30,7 +30,15 @@ $this->params['breadcrumbs'][] = Yii::t('app', $this->title);
         'model' => $model,
         'attributes' => [
             'id',
-            'id_gallery',
+
+            [
+                'attribute' => 'id_gallery',
+                'value' => function($model){
+                    $item = \common\models\Gallery::find()->where(['id' => $model->id_gallery])->one();
+                    return $item->name;
+                }
+            ],
+
             'img',
             'title',
             'text:ntext',

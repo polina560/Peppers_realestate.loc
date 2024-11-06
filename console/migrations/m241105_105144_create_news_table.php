@@ -29,6 +29,7 @@ class m241105_105144_create_news_table extends Migration
 
         $this->CreateTable('Room', [
             'id' => 'int NOT NULL AUTO_INCREMENT',
+            'id_apartment' => $this->integer()->notNull(),
             'title' => $this->string(),
             'area' => $this->integer(),
             'uid' =>  $this->string(),
@@ -36,13 +37,6 @@ class m241105_105144_create_news_table extends Migration
 
         ]);
 
-        $this->CreateTable('ApartRoom', [
-            'id' => 'int NOT NULL AUTO_INCREMENT',
-            'id_apartment' => $this->integer()->notNull(),
-            'id_room' => $this->integer()->notNull(),
-            'PRIMARY KEY(id)'
-
-        ]);
 
         $this->createTable('Texts', [
             'id' => 'int NOT NULL AUTO_INCREMENT',
@@ -61,13 +55,6 @@ class m241105_105144_create_news_table extends Migration
 
         ]);
 
-        $this->CreateTable('TextGroup', [
-            'id' => 'int NOT NULL AUTO_INCREMENT',
-            'id_group' => $this->integer()->notNull(),
-            'id_text' => $this->integer()->notNull(),
-            'PRIMARY KEY(id)'
-
-        ]);
 
         $this->createTable('Documents', [
             'id' => 'int NOT NULL AUTO_INCREMENT',
@@ -99,12 +86,11 @@ class m241105_105144_create_news_table extends Migration
     {
         $this->dropTable('Apartment');
         $this->dropTable('Room');
-        $this->dropTable('ApartRoom');
         $this->dropTable('Documents');
         $this->dropTable('Gallery');
         $this->dropTable('GalleryImages');
         $this->dropTable('Text');
         $this->dropTable('Group');
-        $this->dropTable('TextGroup');
+
     }
 }

@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "Texts".
@@ -14,8 +15,12 @@ use Yii;
  * @property string|null $admin_comment
  * @property int|null $deletable
  */
+
+
 class Texts extends \yii\db\ActiveRecord
 {
+
+
     /**
      * {@inheritdoc}
      */
@@ -30,7 +35,7 @@ class Texts extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['key', 'text'], 'required'],
+            [[ 'text'], 'required'],
             [['id_group', 'deletable'], 'integer'],
             [['text'], 'string'],
             [['key', 'admin_comment'], 'string', 'max' => 255],
@@ -51,5 +56,19 @@ class Texts extends \yii\db\ActiveRecord
             'deletable' => Yii::t('app', 'Deletable'),
 
         ];
+    }
+
+    public function beforeSave($insert): bool
+    {
+
+        if(empty($this->deletable))
+        {
+            $this->deletable = 1;
+        }
+
+        $randomKey = Yii::$app->security->generateRandomString(5);
+        $this->key = $randomKey;
+
+        return parent::beforeSave($insert);
     }
 }

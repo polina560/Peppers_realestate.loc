@@ -1,13 +1,13 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\DetailView;
 
 /** @var yii\web\View $this */
 /** @var common\models\Apartment $model */
 
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Apartments') , 'url' => ['index']];
-$this->params['breadcrumbs'][] =  Yii::t('app', $this->title);
+
 
 $this->title = Yii::t('app', $model->title);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Apartments') , 'url' => ['index']];
@@ -42,7 +42,13 @@ $this->params['breadcrumbs'][] = Yii::t('app', $this->title);
             'address',
             'add_title',
             'add_img',
-            'API_flag',
+            [
+                'attribute'=>'API_flag',
+                'value'=>function($model){
+                    $item = new \common\models\Flag();
+                    return $item->getDeletableName($model->API_flag);
+                }
+            ],
         ],
     ]) ?>
 
