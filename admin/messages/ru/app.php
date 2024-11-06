@@ -161,6 +161,26 @@ return [
     'Create Apartment' => 'Добавить квартиру',
     'Rooms' => 'Комнаты',
     'Create Rooms' => 'Добавить комнату',
-    'Create Text' => 'Добавить текст',
-    'Text' => 'Текст'
+    'Create Gallery' => 'Добавить галерею',
+    'Gallery' => 'Галерея',
+    'Galleries' => 'Галереи',
+    'Gallery Images' => 'Изобрежения',
+    'Create Gallery Images' => 'Добавить изображение',
+    'Image' => 'Изображение',
+    'ID Gallery' => 'ID Галереи',
+    'Groups' => 'Группы',
+    'Create Group' => 'Создать группу',
+    'Update Apartment: ' => 'Обноваить апартаменты: ',
+    'Update Room: ' => 'Обноваить комнату: ',
+    'Update Texts: ' => 'Обноваить текст: ',
+    'Update Documents: ' => 'Обноваить докмент: ',
+    'Update Gallery: ' => 'Обноваить галерею: ',
+    'Update Gallery Images: ' => 'Обноваить изображение: ',
+    'Update Group: ' => 'Обноваить группу: ',
+
+
+
+
+
+
 ];

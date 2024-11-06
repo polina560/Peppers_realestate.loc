@@ -5,9 +5,9 @@ use yii\helpers\Html;
 /** @var yii\web\View $this */
 /** @var common\models\Group $model */
 
-$this->title = 'Create Group';
-$this->params['breadcrumbs'][] = ['label' => 'Groups', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = Yii::t('app', 'Create Group');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Groups'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = Yii::t('app', $this->title);
 ?>
 <div class="group-create">
 

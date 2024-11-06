@@ -6,9 +6,9 @@ use yii\widgets\DetailView;
 /** @var yii\web\View $this */
 /** @var common\models\Group $model */
 
-$this->title = $model->title;
-$this->params['breadcrumbs'][] = ['label' => 'Groups', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = Yii::t('app', $model->title);
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Groups'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = Yii::t('app', $this->title);
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="group-view">
@@ -16,8 +16,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',

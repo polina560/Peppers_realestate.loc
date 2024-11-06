@@ -2,6 +2,8 @@
 
 namespace common\models;
 
+use Yii;
+
 /**
  * This is the model class for table "GalleryImages".
  *
@@ -40,11 +42,12 @@ class GalleryImages extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'id_gallery' => 'Id Gallery',
-            'img' => 'Img',
-            'title' => 'Title',
-            'text' => 'Text',
+            'id' => Yii::t('app','ID'),
+            'id_gallery' => Yii::t('app', 'ID Gallery'),
+            'img' => Yii::t('app', 'Image'),
+            'title' => Yii::t('app', 'Title'),
+            'text' => Yii::t('app', 'Text'),
+
         ];
     }
 }

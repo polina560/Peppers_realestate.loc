@@ -10,15 +10,15 @@ use yii\helpers\Url;
 /** @var \common\models\DocumentsSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Documents';
-$this->params['breadcrumbs'][] = $this->title;
+$this->title =  Yii::t('app', 'Documents');
+$this->params['breadcrumbs'][] =  Yii::t('app', $this->title);
 ?>
 <div class="documents-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Documents', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Create Documents'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>

@@ -10,15 +10,15 @@ use yii\grid\GridView;
 /** @var common\models\GroupSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Groups';
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = Yii::t('app', 'Groups');
+$this->params['breadcrumbs'][] = Yii::t('app', $this->title);
 ?>
 <div class="group-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Group', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Create Group'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>

@@ -11,14 +11,14 @@ use yii\grid\GridView;
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
 $this->title = Yii::t('app', 'Rooms');
-$this->params['breadcrumbs'][] =  Yii::t('app', $this->title) ;
+$this->params['breadcrumbs'][] = Yii::t('app', $this->title);
 ?>
 <div class="room-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a( Yii::t('app', 'Create Room') , ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Create Rooms'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>

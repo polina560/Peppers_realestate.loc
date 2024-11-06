@@ -5,9 +5,9 @@ use yii\helpers\Html;
 /** @var yii\web\View $this */
 /** @var \common\models\GalleryImages $model */
 
-$this->title = 'Create Gallery Images';
-$this->params['breadcrumbs'][] = ['label' => 'Gallery Images', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = Yii::t('app', 'Create Gallery Images');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Gallery Images'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = Yii::t('app', $this->title);
 ?>
 <div class="gallery-images-create">
 
