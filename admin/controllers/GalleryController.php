@@ -3,7 +3,9 @@
 namespace admin\controllers;
 
 use common\models\Gallery;
+use common\models\GalleryImages;
 use common\models\GallerySearch;
+use yii\data\ActiveDataProvider;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -57,6 +59,19 @@ class GalleryController extends Controller
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
+        ]);
+    }
+
+    public function actionImage($id)
+    {
+        $gallery = $this->findModel($id);
+        $dataProvider = new ActiveDataProvider([
+            'query' => GalleryImages::find()->where(['id_gallery' => $id])
+        ]);
+
+        return $this->render('images', [
+            'gallery' => $gallery,
+            'dataProvider' => $dataProvider
         ]);
     }
 

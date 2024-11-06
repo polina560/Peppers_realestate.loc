@@ -1,24 +1,24 @@
 <?php
 
-use common\models\Gallery;
+use common\models\GalleryImages;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
 /** @var yii\web\View $this */
-/** @var \common\models\GallerySearch $searchModel */
+/** @var \common\models\GalleryImagesSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = Yii::t('app', $this->title);
+$this->title = Yii::t('app', 'Gallery Images');
 $this->params['breadcrumbs'][] = Yii::t('app', $this->title);
 ?>
-<div class="gallery-index">
+<div class="gallery-images-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Gallery'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Create Gallery Images'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -30,24 +30,19 @@ $this->params['breadcrumbs'][] = Yii::t('app', $this->title);
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'name',
-//            [
-//                'class' => 'yii\grid\ActionColumn',
-//                'template' => '{rooms}',
-//                'buttons' => [
-//                    'rooms' => function ($url, $model) {
-//                        return Html::a('Изображения', ['gallery/images', 'id' => $model->id]);
-//                    },
-//                ],
-//            ],
+            'id_gallery',
+            'img',
+            'title',
+            'text:ntext',
             [
                 'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, Gallery $model, $key, $index, $column) {
+                'urlCreator' => function ($action, GalleryImages $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
-                 }
+                }
             ],
         ],
     ]); ?>
 
 
 </div>
+

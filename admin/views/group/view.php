@@ -31,15 +31,15 @@ $this->params['breadcrumbs'][] = Yii::t('app', $this->title);
         'attributes' => [
             'id',
             'title',
-            'texts' => [
-
-                'label'=> Yii::t('app', 'Texts'),
-                'format'=>'raw',
-                'value' => function($data){
-                    $url = "../texts";
-                    return Html::a(Yii::t('app', 'Texts'), $url, ['title' => Yii::t('app', 'Texts')]);
-                }
-            ],
+//            'texts' => [
+//
+//                'label'=> Yii::t('app', 'Texts'),
+//                'format'=>'raw',
+//                'value' => function($data){
+//                    $url = "../texts";
+//                    return Html::a(Yii::t('app', 'Texts'), $url, ['title' => Yii::t('app', 'Texts')]);
+//                }
+//            ],
         ],
     ]) ?>
 
