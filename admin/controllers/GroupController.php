@@ -72,7 +72,7 @@ class GroupController extends Controller
         ]);
 
 
-        return $this->render('texts', [
+        return $this->render('filtertexts', [
             'group' => $group,
             'dataProvider' => $dataProvider
         ]);
