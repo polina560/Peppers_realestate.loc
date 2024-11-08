@@ -1,16 +1,15 @@
 <?php
 
-use yii\bootstrap5\Html;
+use yii\helpers\Html;
 use yii\widgets\DetailView;
 
-/**
- * @var $this  yii\web\View
- * @var $model common\models\Text
- */
+/** @var yii\web\View $this */
+/** @var common\models\Text $model */
 
 $this->title = $model->id;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Texts'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+\yii\web\YiiAsset::register($this);
 ?>
 <div class="text-view">
 
@@ -18,6 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?php if ($model->deletable): ?>
         <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
@@ -25,6 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'method' => 'post',
             ],
         ]) ?>
+        <?php endif ?>
     </p>
 
     <?= DetailView::widget([
@@ -33,6 +34,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'key',
             'value:ntext',
+            'group',
+            'comment',
         ],
     ]) ?>
 

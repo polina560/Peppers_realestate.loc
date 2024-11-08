@@ -1,12 +1,11 @@
 <?php
 
-use yii\bootstrap5\{ActiveForm, Html};
+use yii\helpers\Html;
+use yii\widgets\ActiveForm;
 
-/**
- * @var $this  yii\web\View
- * @var $model common\models\TextSearch
- * @var $form  yii\widgets\ActiveForm
- */
+/** @var yii\web\View $this */
+/** @var common\models\TextSearch $model */
+/** @var yii\widgets\ActiveForm $form */
 ?>
 
 <div class="text-search">
@@ -22,9 +21,15 @@ use yii\bootstrap5\{ActiveForm, Html};
 
     <?= $form->field($model, 'value') ?>
 
+    <?= $form->field($model, 'group') ?>
+
+    <?= $form->field($model, 'deletable') ?>
+
+    <?php // echo $form->field($model, 'comment') ?>
+
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton(Yii::t('app', 'Reset'), ['class' => 'btn btn-default']) ?>
+        <?= Html::resetButton(Yii::t('app', 'Reset'), ['class' => 'btn btn-outline-secondary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

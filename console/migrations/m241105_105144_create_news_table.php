@@ -37,25 +37,6 @@ class m241105_105144_create_news_table extends Migration
 
         ]);
 
-
-        $this->createTable('Texts', [
-            'id' => 'int NOT NULL AUTO_INCREMENT',
-            'key' => $this->string()->notNull(),
-            'id_group' => $this->integer(),
-            'text' => $this->text()->notNull(),
-            'admin_comment' => $this->string(),
-            'deletable' => $this->boolean(),
-            'PRIMARY KEY(id)'
-        ]);
-
-        $this->CreateTable('Group', [
-            'id' => 'int NOT NULL AUTO_INCREMENT',
-            'title' => $this->string(),
-            'PRIMARY KEY(id)'
-
-        ]);
-
-
         $this->createTable('Documents', [
             'id' => 'int NOT NULL AUTO_INCREMENT',
             'key' => $this->string()->notNull(),
@@ -89,8 +70,5 @@ class m241105_105144_create_news_table extends Migration
         $this->dropTable('Documents');
         $this->dropTable('Gallery');
         $this->dropTable('GalleryImages');
-        $this->dropTable('Text');
-        $this->dropTable('Group');
-
     }
 }

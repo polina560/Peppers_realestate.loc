@@ -37,16 +37,11 @@ class GalleryImagesController extends Controller
      *
      * @return string
      */
-    public function actionIndex($id_gallery = 0)
+    public function actionIndex(int $id_gallery)
     {
-
         $searchModel = new GalleryImagesSearch();
+        $searchModel->id_gallery = $id_gallery;
         $dataProvider = $searchModel->search($this->request->queryParams);
-
-        if(!isEmpty($id_gallery))
-        {
-            $dataProvider->query->andWhere(['id_gallery' => $id_gallery]);
-        }
 
         return $this->render('index', [
             'searchModel' => $searchModel,

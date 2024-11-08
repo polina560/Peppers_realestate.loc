@@ -11,6 +11,8 @@ use yii\helpers\Url;
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
 $this->title = Yii::t('app', 'Gallery Images');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app','Galleries'), 'url' => ['/gallery/index']];
+$this->params['breadcrumbs'][] = ['label' => $searchModel->gallery->name, 'url' => ['/gallery/view', 'id' => $searchModel->id_gallery]];
 $this->params['breadcrumbs'][] = Yii::t('app', $this->title);
 ?>
 <div class="gallery-images-index">
@@ -30,7 +32,6 @@ $this->params['breadcrumbs'][] = Yii::t('app', $this->title);
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'id_gallery',
             'img',
             'title',
             'text:ntext',

@@ -10,6 +10,8 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
+use Yii2\Extensions\DynamicForm\Models\Model;
+
 /**
  * ApartmentController implements the CRUD actions for Apartment model.
  */
@@ -95,9 +97,49 @@ class ApartmentController extends Controller
             $model->loadDefaultValues();
         }
 
-        return $this->render('create', [
-            'model' => $model,
-        ]);
+//        $modelCustomer = new Apartment();
+//        $modelsAddress = [new Room()];
+//        if ($modelCustomer->load(Yii::$app->request->post())) {
+//
+//            $modelsAddress = Model::createMultiple(Address::classname());
+//            Model::loadMultiple($modelsAddress, Yii::$app->request->post());
+//
+//
+//            // validate all models
+//            $valid = $modelCustomer->validate();
+//            $valid = Model::validateMultiple($modelsAddress) && $valid;
+//
+//            if ($valid) {
+//                $transaction = \Yii::$app->db->beginTransaction();
+//                try {
+//                    if ($flag = $modelCustomer->save(false)) {
+//                        foreach ($modelsAddress as $modelAddress) {
+//                            $modelAddress->customer_id = $modelCustomer->id;
+//                            if (! ($flag = $modelAddress->save(false))) {
+//                                $transaction->rollBack();
+//                                break;
+//                            }
+//                        }
+//                    }
+//                    if ($flag) {
+//                        $transaction->commit();
+//                        return $this->redirect(['view', 'id' => $modelCustomer->id]);
+//                    }
+//                } catch (Exception $e) {
+//                    $transaction->rollBack();
+//                }
+//            }
+//        }
+//
+//        return $this->render('create', [
+//            'modelApartment' => $modelCustomer,
+//            'modelsRoom' => (empty($modelsAddress)) ? [new Address] : $modelsAddress
+//        ]);
+//
+//
+//return $this->render('create', [
+//            'model' => $model,
+//        ]);
     }
 
     /**
@@ -118,7 +160,55 @@ class ApartmentController extends Controller
         return $this->render('update', [
             'model' => $model,
         ]);
-    }
+
+//    $modelsAddress = $modelCustomer->addresses;
+//
+//    // primary key of $modelsAddress
+//    $pkey = 'id';
+//
+//    if ($modelCustomer->load(Yii::$app->request->post())) {
+//
+//        $oldIDs = ArrayHelper::map($modelsAddress, $pkey, $pkey);
+//        $modelsAddress = Model::createMultiple(Address::classname(), $modelsAddress, $pkey);
+//        Model::loadMultiple($modelsAddress, Yii::$app->request->post());
+//        $deletedIDs = array_diff($oldIDs, array_filter(ArrayHelper::map($modelsAddress, $pkey, $pkey)));
+//
+//
+//        // validate all models
+//        $valid = $modelCustomer->validate();
+//        $valid = Model::validateMultiple($modelsAddress) && $valid;
+//
+//        if ($valid) {
+//            $transaction = \Yii::$app->db->beginTransaction();
+//            try {
+//                if ($flag = $modelCustomer->save(false)) {
+//                    if (! empty($deletedIDs)) {
+//                        Address::deleteAll([$pkey => $deletedIDs]);
+//                    }
+//                    foreach ($modelsAddress as $modelAddress) {
+//                        $modelAddress->customer_id = $modelCustomer->id;
+//                        if (! ($flag = $modelAddress->save(false))) {
+//                            $transaction->rollBack();
+//                            break;
+//                        }
+//                    }
+//                }
+//                if ($flag) {
+//                    $transaction->commit();
+//                    return $this->redirect(['view', 'id' => $modelCustomer->id]);
+//                }
+//            } catch (Exception $e) {
+//                $transaction->rollBack();
+//            }
+//        }
+//    }
+//
+//    return $this->render('update', [
+//        'modelCustomer' => $modelCustomer,
+//        'modelsAddress' => (empty($modelsAddress)) ? [new Address] : $modelsAddress
+//    ]);
+}
+
 
     /**
      * Deletes an existing Apartment model.

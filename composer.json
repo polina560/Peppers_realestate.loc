@@ -47,7 +47,8 @@
     "yiisoft/yii2-httpclient": "^2.0",
     "yiisoft/yii2-queue": "^2.3",
     "yiisoft/yii2-symfonymailer": "^2.0.0",
-    "vova07/yii2-imperavi-widget": "*"
+    "vova07/yii2-imperavi-widget": "*",
+    "yii2-extensions/dynamicform": "^1.0.0"
   },
   "require-dev": {
     "bower-asset/swagger-ui": "^4.17",

@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\db\ActiveQuery;
 use yii\web\UploadedFile;
 
 /**
@@ -13,6 +14,8 @@ use yii\web\UploadedFile;
  * @property string $img
  * @property string|null $title
  * @property string|null $text
+ *
+ * @property-read Gallery $gallery
  */
 class GalleryImages extends \yii\db\ActiveRecord
 {
@@ -82,5 +85,10 @@ class GalleryImages extends \yii\db\ActiveRecord
         }
 
         return parent::beforeSave($insert);
+    }
+
+    public function getGallery(): ActiveQuery
+    {
+        return $this->hasOne(Gallery::class, ['id' => 'id_gallery']);
     }
 }

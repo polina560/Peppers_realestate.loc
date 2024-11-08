@@ -62,19 +62,6 @@ class GalleryController extends Controller
         ]);
     }
 
-    public function actionImage($id)
-    {
-        $gallery = $this->findModel($id);
-        $dataProvider = new ActiveDataProvider([
-            'query' => GalleryImages::find()->where(['id_gallery' => $id])
-        ]);
-
-        return $this->render('images', [
-            'gallery' => $gallery,
-            'dataProvider' => $dataProvider
-        ]);
-    }
-
     /**
      * Creates a new Gallery model.
      * If creation is successful, the browser will be redirected to the 'view' page.

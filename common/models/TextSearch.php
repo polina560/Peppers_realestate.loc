@@ -4,27 +4,28 @@ namespace common\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
+use common\models\Text;
 
 /**
- * TextSearch represents the model behind the search form of `admin\models\Text`.
+ * TextSearch represents the model behind the search form of `common\models\Text`.
  */
 class TextSearch extends Text
 {
     /**
      * {@inheritdoc}
      */
-    public function rules(): array
+    public function rules()
     {
         return [
-            [['id'], 'integer'],
-            [['key', 'value'], 'safe'],
+            [['id', 'deletable'], 'integer'],
+            [['key', 'value', 'group', 'comment'], 'safe'],
         ];
     }
 
     /**
      * {@inheritdoc}
      */
-    public function scenarios(): array
+    public function scenarios()
     {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
@@ -37,7 +38,7 @@ class TextSearch extends Text
      *
      * @return ActiveDataProvider
      */
-    public function search(array $params): ActiveDataProvider
+    public function search($params)
     {
         $query = Text::find();
 
@@ -58,10 +59,13 @@ class TextSearch extends Text
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'deletable' => $this->deletable,
         ]);
 
         $query->andFilterWhere(['like', 'key', $this->key])
-            ->andFilterWhere(['like', 'value', $this->value]);
+            ->andFilterWhere(['like', 'value', $this->value])
+            ->andFilterWhere(['like', 'group', $this->group])
+            ->andFilterWhere(['like', 'comment', $this->comment]);
 
         return $dataProvider;
     }

@@ -74,13 +74,13 @@ class Gallery extends \yii\db\ActiveRecord
 
     public static function viewMenuItems()
     {
+        /** @var self[] $items */
         $items = self::find()->all();
         $results = [];
         foreach($items as $item){
             $results[] = [
                 'label' => $item->name,
-                'url' => ['gallery/images', 'id_gallery' => $item->id],
-
+                'url' => ['/gallery-images/index', 'id_gallery' => $item->id],
             ];
 
         }

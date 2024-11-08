@@ -6,6 +6,7 @@
  */
 
 use admin\assets\AppAsset;
+use common\models\Gallery;
 use common\widgets\Alert;
 use yii\bootstrap5\{Breadcrumbs, Html, Nav, NavBar};
 use kartik\icons\{FontAwesomeAsset, Icon};
@@ -53,12 +54,6 @@ FontAwesomeAsset::register($this);
     if (!Yii::$app->user->isGuest) {
         $menuItems = [
             ['label' => 'Пользователи', 'url' => ['/user']],
-//            [
-//                'label' => 'Контент',
-//                'items' => [
-//                    ['label' => 'Тексты', 'url' => ['/text']],
-//                ]
-//            ],
             [
                 'label' => 'Управление',
                 'items' => [
@@ -68,33 +63,20 @@ FontAwesomeAsset::register($this);
                 ]
             ],
             [
-                'label' => 'Таблицы',
+                'label' => 'Контент',
                 'items' => [
+                    ['label' => 'Тексты', 'url' => ['/text']],
                     ['label' => 'Квартиры', 'url' => ['/apartment']],
                     ['label' => 'Комнаты', 'url' => ['/room']],
                     ['label' => 'Документы', 'url' => ['/documents']],
                     ['label' => 'Галереи', 'url' => ['/gallery']],
-                    ['label' => 'Изображения', 'url' => ['/gallery-images']],
                 ]
             ],
             [
                 'label' => 'Галереи',
-                'items' => \common\models\Gallery::viewMenuItems()
+                'items' => Gallery::viewMenuItems()
 
             ],
-            [
-                'label' => 'Фильтры текстов',
-                'items' =>[
-                    ['label' => 'Основной адрес', 'url' => ['/texts/filter-text'], 'main_address' => 1],
-                    ['label' => 'Основной телефон', 'url' => ['/texts/filter-text'], 'main_phone' => 1],
-                    ['label' => 'Офис продаж. Адрес', 'url' => ['/texts/filter-text'], 'sales_office_address' => 1],
-                    ['label' => 'Офис продаж. Телефон', 'url' => ['/texts/filter-text'], 'sales_office_phone' => 1],
-                ],
-
-
-        ],
-
-
             '<li class="divider-vertical"></li>',
         ];
 
