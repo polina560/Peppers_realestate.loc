@@ -1,6 +1,7 @@
 <?php
 
 use common\models\Gallery;
+use kartik\icons\Icon;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 use yii\helpers\Html;
@@ -10,7 +11,7 @@ use yii\helpers\Url;
 /** @var \common\models\GallerySearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = Yii::t('app', $this->title);
+$this->title = Yii::t('app', 'Gallery Images');
 $this->params['breadcrumbs'][] = Yii::t('app', $this->title);
 ?>
 <div class="gallery-index">
@@ -31,15 +32,15 @@ $this->params['breadcrumbs'][] = Yii::t('app', $this->title);
 
             'id',
             'name',
-//            [
-//                'class' => 'yii\grid\ActionColumn',
-//                'template' => '{rooms}',
-//                'buttons' => [
-//                    'rooms' => function ($url, $model) {
-//                        return Html::a('Изображения', ['gallery/images', 'id' => $model->id]);
-//                    },
-//                ],
-//            ],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{images}',
+                'buttons' => [
+                    'images' => function ($url, $model) {
+                        return Html::a(Icon::show('image'), ['gallery/images', 'id' => $model->id],['title'=> 'Изображения']);
+                    },
+                ],
+            ],
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Gallery $model, $key, $index, $column) {

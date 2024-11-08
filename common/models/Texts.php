@@ -71,4 +71,6 @@ class Texts extends \yii\db\ActiveRecord
 
         return parent::beforeSave($insert);
     }
+
+
 }

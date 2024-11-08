@@ -28,7 +28,7 @@ class Room extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_apartment'], 'required'],
+
             [['area', 'id_apartment'], 'integer'],
             [['title', 'uid'], 'string', 'max' => 255],
         ];

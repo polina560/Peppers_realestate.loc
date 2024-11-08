@@ -7,6 +7,7 @@ use common\models\TextsSearch;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use function PHPUnit\Framework\isEmpty;
 
 /**
  * TextsController implements the CRUD actions for Texts model.
@@ -36,10 +37,20 @@ class TextsController extends Controller
      *
      * @return string
      */
-    public function actionIndex()
+    public function actionIndex($main_address = null, $main_phone = null, $sales_office_address = null, $sales_office_phone = null)
     {
         $searchModel = new TextsSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
+
+        if($main_address != null)
+            $dataProvider->query->andWhere(['main_address' => $main_address]);
+        if($main_phone != null)
+            $dataProvider->query->andWhere(['main_phone' => $main_phone]);
+        if($sales_office_address != null)
+            $dataProvider->query->andWhere(['sales_office_address ' => $sales_office_address]);
+        if($sales_office_phone != null)
+            $dataProvider->query->andWhere(['sales_office_phone ' => $sales_office_phone]);
+
 
         return $this->render('index', [
             'searchModel' => $searchModel,

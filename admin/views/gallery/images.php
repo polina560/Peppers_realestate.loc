@@ -11,7 +11,12 @@ use yii\helpers\Url;
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
 $this->title = Yii::t('app', 'Gallery Images');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Gallery'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = Yii::t('app', $this->title);
+
+
+//$searchModel->id_gallery = $_GET['id_gallery'];
+
 ?>
 <div class="gallery-images-index">
 
@@ -37,7 +42,7 @@ $this->params['breadcrumbs'][] = Yii::t('app', $this->title);
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, GalleryImages $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id' => $model->id]);
+                    return Url::toRoute(['gallery-images/view', 'id' => $model->id]);
                 }
             ],
         ],

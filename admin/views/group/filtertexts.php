@@ -11,6 +11,7 @@ use yii\helpers\Url;
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
 $this->title = Yii::t('app', 'Texts');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Groups') , 'url' => ['index']];
 $this->params['breadcrumbs'][] = Yii::t('app', $this->title);
 ?>
 <div class="texts-index">
@@ -39,7 +40,7 @@ $this->params['breadcrumbs'][] = Yii::t('app', $this->title);
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Texts $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id' => $model->id]);
+                    return Url::toRoute(['texts/view', 'id' => $model->id]);
                 }
             ],
         ],

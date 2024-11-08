@@ -11,6 +11,7 @@ use yii\grid\GridView;
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
 $this->title = Yii::t('app', 'Rooms');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Apartments') , 'url' => ['index']];
 $this->params['breadcrumbs'][] = Yii::t('app', $this->title);
 ?>
 <div class="room-index">
@@ -36,7 +37,7 @@ $this->params['breadcrumbs'][] = Yii::t('app', $this->title);
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Room $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id' => $model->id]);
+                    return Url::toRoute(['room/view', 'id' => $model->id]);
                 }
             ],
         ],

@@ -32,9 +32,9 @@ $this->params['breadcrumbs'][] = Yii::t('app', $this->title);
             'title',
             [
                 'class' => 'yii\grid\ActionColumn',
-                'template' => '{rooms}',
+                'template' => '{filtertexts}',
                 'buttons' => [
-                    'rooms' => function ($url, $model) {
+                    'filtertexts' => function ($url, $model) {
                         return Html::a('Тексты', ['group/texts', 'id' => $model->id]);
                     },
                 ],

@@ -29,6 +29,7 @@ FontAwesomeAsset::register($this);
 
 <div class="wrap">
     <?php
+
     NavBar::begin([
         'brandLabel' => Yii::$app->name,
         'brandUrl' => Yii::$app->homeUrl,
@@ -47,15 +48,17 @@ FontAwesomeAsset::register($this);
 
     $menuItems = [];
 
+
+
     if (!Yii::$app->user->isGuest) {
         $menuItems = [
             ['label' => 'Пользователи', 'url' => ['/user']],
-            [
-                'label' => 'Контент',
-                'items' => [
-                    ['label' => 'Тексты', 'url' => ['/text']],
-                ]
-            ],
+//            [
+//                'label' => 'Контент',
+//                'items' => [
+//                    ['label' => 'Тексты', 'url' => ['/text']],
+//                ]
+//            ],
             [
                 'label' => 'Управление',
                 'items' => [
@@ -69,15 +72,34 @@ FontAwesomeAsset::register($this);
                 'items' => [
                     ['label' => 'Квартиры', 'url' => ['/apartment']],
                     ['label' => 'Комнаты', 'url' => ['/room']],
-                    ['label' => 'Тексты', 'url' => ['/texts']],
                     ['label' => 'Документы', 'url' => ['/documents']],
                     ['label' => 'Галереи', 'url' => ['/gallery']],
                     ['label' => 'Изображения', 'url' => ['/gallery-images']],
-                    ['label' => 'Группы текстов', 'url' => ['/group']],
                 ]
             ],
+            [
+                'label' => 'Галереи',
+                'items' => \common\models\Gallery::viewMenuItems()
+
+            ],
+            [
+                'label' => 'Фильтры текстов',
+                'items' =>[
+                    ['label' => 'Основной адрес', 'url' => ['/texts/filter-text'], 'main_address' => 1],
+                    ['label' => 'Основной телефон', 'url' => ['/texts/filter-text'], 'main_phone' => 1],
+                    ['label' => 'Офис продаж. Адрес', 'url' => ['/texts/filter-text'], 'sales_office_address' => 1],
+                    ['label' => 'Офис продаж. Телефон', 'url' => ['/texts/filter-text'], 'sales_office_phone' => 1],
+                ],
+
+
+        ],
+
+
             '<li class="divider-vertical"></li>',
         ];
+
+
+
         $menuItems[] = Html::tag(
             'li',
             Html::a(

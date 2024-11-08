@@ -7,6 +7,7 @@ use common\models\GalleryImagesSearch;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use function PHPUnit\Framework\isEmpty;
 
 /**
  * GalleryImagesController implements the CRUD actions for GalleryImages model.
@@ -36,10 +37,16 @@ class GalleryImagesController extends Controller
      *
      * @return string
      */
-    public function actionIndex()
+    public function actionIndex($id_gallery = 0)
     {
+
         $searchModel = new GalleryImagesSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
+
+        if(!isEmpty($id_gallery))
+        {
+            $dataProvider->query->andWhere(['id_gallery' => $id_gallery]);
+        }
 
         return $this->render('index', [
             'searchModel' => $searchModel,
