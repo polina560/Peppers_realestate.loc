@@ -5,7 +5,10 @@ namespace admin\controllers;
 use common\models\Apartment;
 use common\models\ApartmentSearch;
 use common\models\Room;
+use Exception;
+use Yii;
 use yii\data\ActiveDataProvider;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -87,59 +90,56 @@ class ApartmentController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Apartment();
+//        $model = new Apartment();
+//
+//        if ($this->request->isPost) {
+//            if ($model->load($this->request->post()) && $model->save()) {
+//                return $this->redirect(['view', 'id' => $model->id]);
+//            }
+//        } else {
+//            $model->loadDefaultValues();
+//        }
 
-        if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+        $modelApartment = new Apartment();
+        $modelsRooms = [new Room()];
+        if ($modelApartment->load(Yii::$app->request->post())) {
+
+            $modelsRooms = Model::createMultiple(Room::class);
+            Model::loadMultiple($modelsRooms, Yii::$app->request->post());
+
+
+            // validate all models
+            $valid = $modelApartment->validate();
+            $valid = Model::validateMultiple($modelsRooms) && $valid;
+
+            if ($valid) {
+                $transaction = \Yii::$app->db->beginTransaction();
+                try {
+                    if ($flag = $modelApartment->save(false)) {
+                        foreach ($modelsRooms as $modelsRoom) {
+                            $modelsRoom->id_apartment = $modelApartment->id;
+                            if (!($flag = $modelsRoom->save(false))) {
+                                $transaction->rollBack();
+                                break;
+                            }
+                        }
+                    }
+                    if ($flag) {
+                        $transaction->commit();
+                        return $this->redirect(['view', 'id' => $modelApartment->id]);
+                    }
+                } catch (Exception $e) {
+                    $transaction->rollBack();
+                }
             }
-        } else {
-            $model->loadDefaultValues();
         }
 
-//        $modelCustomer = new Apartment();
-//        $modelsAddress = [new Room()];
-//        if ($modelCustomer->load(Yii::$app->request->post())) {
-//
-//            $modelsAddress = Model::createMultiple(Address::classname());
-//            Model::loadMultiple($modelsAddress, Yii::$app->request->post());
-//
-//
-//            // validate all models
-//            $valid = $modelCustomer->validate();
-//            $valid = Model::validateMultiple($modelsAddress) && $valid;
-//
-//            if ($valid) {
-//                $transaction = \Yii::$app->db->beginTransaction();
-//                try {
-//                    if ($flag = $modelCustomer->save(false)) {
-//                        foreach ($modelsAddress as $modelAddress) {
-//                            $modelAddress->customer_id = $modelCustomer->id;
-//                            if (! ($flag = $modelAddress->save(false))) {
-//                                $transaction->rollBack();
-//                                break;
-//                            }
-//                        }
-//                    }
-//                    if ($flag) {
-//                        $transaction->commit();
-//                        return $this->redirect(['view', 'id' => $modelCustomer->id]);
-//                    }
-//                } catch (Exception $e) {
-//                    $transaction->rollBack();
-//                }
-//            }
-//        }
-//
-//        return $this->render('create', [
-//            'modelApartment' => $modelCustomer,
-//            'modelsRoom' => (empty($modelsAddress)) ? [new Address] : $modelsAddress
-//        ]);
-//
-//
-//return $this->render('create', [
-//            'model' => $model,
-//        ]);
+        return $this->render('create', [
+            'modelApartment' => $modelApartment,
+            'modelsRooms' => (empty($modelsRooms)) ? [new Room()] : $modelsRooms
+        ]);
+
+
     }
 
     /**
@@ -151,62 +151,64 @@ class ApartmentController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+//        $model = $this->findModel($id);
+//
+//        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+//            return $this->redirect(['view', 'id' => $model->id]);
+//        }
+//
+//        return $this->render('update', [
+//            'model' => $model,
+//        ]);
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        $modelApartment = $this->findModel($id);
+        $modelsRooms = Room::find()->where(['id_apartment' => $modelApartment->id])->all();
+//            $modelApartment->addresses;
+
+    // primary key of $modelsAddress
+        $pkey = 'id_room';
+
+        if ($modelApartment->load(Yii::$app->request->post())) {
+
+            $oldIDs = ArrayHelper::map($modelsRooms, $pkey, $pkey);
+            $modelsRooms = Model::createMultiple(Room::classname(), $modelsRooms, $pkey);
+            Model::loadMultiple($modelsRooms, Yii::$app->request->post());
+            $deletedIDs = array_diff($oldIDs, array_filter(ArrayHelper::map($modelsRooms, $pkey, $pkey)));
+
+
+            // validate all models
+            $valid = $modelApartment->validate();
+            $valid = Model::validateMultiple($modelsRooms) && $valid;
+
+            if ($valid) {
+                $transaction = \Yii::$app->db->beginTransaction();
+                try {
+                    if ($flag = $modelApartment->save(false)) {
+                        if (! empty($deletedIDs)) {
+                            Room::deleteAll([$pkey => $deletedIDs]);
+                        }
+                        foreach ($modelsRooms as $modelsRoom) {
+                            $modelsRoom->id_apartment = $modelApartment->id;
+                            if (! ($flag = $modelsRoom->save(false))) {
+                                $transaction->rollBack();
+                                break;
+                            }
+                        }
+                    }
+                    if ($flag) {
+                        $transaction->commit();
+                        return $this->redirect(['view', 'id' => $modelApartment->id]);
+                    }
+                } catch (Exception $e) {
+                    $transaction->rollBack();
+                }
+            }
         }
 
         return $this->render('update', [
-            'model' => $model,
+            'modelApartment' => $modelApartment,
+            'modelsRooms' => (empty($modelsRooms)) ? [new Room()] : $modelsRooms
         ]);
-
-//    $modelsAddress = $modelCustomer->addresses;
-//
-//    // primary key of $modelsAddress
-//    $pkey = 'id';
-//
-//    if ($modelCustomer->load(Yii::$app->request->post())) {
-//
-//        $oldIDs = ArrayHelper::map($modelsAddress, $pkey, $pkey);
-//        $modelsAddress = Model::createMultiple(Address::classname(), $modelsAddress, $pkey);
-//        Model::loadMultiple($modelsAddress, Yii::$app->request->post());
-//        $deletedIDs = array_diff($oldIDs, array_filter(ArrayHelper::map($modelsAddress, $pkey, $pkey)));
-//
-//
-//        // validate all models
-//        $valid = $modelCustomer->validate();
-//        $valid = Model::validateMultiple($modelsAddress) && $valid;
-//
-//        if ($valid) {
-//            $transaction = \Yii::$app->db->beginTransaction();
-//            try {
-//                if ($flag = $modelCustomer->save(false)) {
-//                    if (! empty($deletedIDs)) {
-//                        Address::deleteAll([$pkey => $deletedIDs]);
-//                    }
-//                    foreach ($modelsAddress as $modelAddress) {
-//                        $modelAddress->customer_id = $modelCustomer->id;
-//                        if (! ($flag = $modelAddress->save(false))) {
-//                            $transaction->rollBack();
-//                            break;
-//                        }
-//                    }
-//                }
-//                if ($flag) {
-//                    $transaction->commit();
-//                    return $this->redirect(['view', 'id' => $modelCustomer->id]);
-//                }
-//            } catch (Exception $e) {
-//                $transaction->rollBack();
-//            }
-//        }
-//    }
-//
-//    return $this->render('update', [
-//        'modelCustomer' => $modelCustomer,
-//        'modelsAddress' => (empty($modelsAddress)) ? [new Address] : $modelsAddress
-//    ]);
 }
 
 

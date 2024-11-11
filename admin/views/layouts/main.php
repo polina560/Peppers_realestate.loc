@@ -54,20 +54,12 @@ FontAwesomeAsset::register($this);
     if (!Yii::$app->user->isGuest) {
         $menuItems = [
             ['label' => 'Пользователи', 'url' => ['/user']],
-            [
-                'label' => 'Управление',
-                'items' => [
-                    ['label' => 'Настройки', 'url' => ['/setting']],
-                    ['label' => 'Администраторы', 'url' => ['/user-admin']],
-                    ['label' => 'Информация о хостинге', 'url' => ['/site/info']],
-                ]
-            ],
+
             [
                 'label' => 'Контент',
                 'items' => [
                     ['label' => 'Тексты', 'url' => ['/text']],
                     ['label' => 'Квартиры', 'url' => ['/apartment']],
-                    ['label' => 'Комнаты', 'url' => ['/room']],
                     ['label' => 'Документы', 'url' => ['/documents']],
                     ['label' => 'Галереи', 'url' => ['/gallery']],
                 ]
@@ -77,6 +69,17 @@ FontAwesomeAsset::register($this);
                 'items' => Gallery::viewMenuItems()
 
             ],
+            ['label' => 'Контакты', 'url' => ['/text/index', 'group' => 'contacts']],
+
+            [
+                'label' => 'Управление',
+                'items' => [
+                    ['label' => 'Настройки', 'url' => ['/setting']],
+                    ['label' => 'Администраторы', 'url' => ['/user-admin']],
+                    ['label' => 'Информация о хостинге', 'url' => ['/site/info']],
+                ]
+            ],
+
             '<li class="divider-vertical"></li>',
         ];
 
@@ -92,7 +95,7 @@ FontAwesomeAsset::register($this);
             ['class' => 'nav-item skip-search']
         );
     } else {
-        $menuItems[] = ['label' => Icon::show('sign-in-alt') . 'Войти', 'url' => ['/site/login']];
+        $menuItems[] = ['label' => 'Войти', 'url' => ['/site/login']];
     }
     echo Nav::widget([
         'options' => ['class' => 'nav navbar-nav ms-auto d-flex nav-pills justify-content-between'],

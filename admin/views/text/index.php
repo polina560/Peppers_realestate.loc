@@ -1,10 +1,13 @@
 <?php
 
 use common\models\Text;
+use kartik\editable\Editable;
+use kartik\grid\EditableColumn;
+use kartik\grid\GridView;
+use yii\grid\ActionColumn;
 use yii\helpers\Html;
 use yii\helpers\Url;
-use yii\grid\ActionColumn;
-use yii\grid\GridView;
+
 
 /** @var yii\web\View $this */
 /** @var common\models\TextSearch $searchModel */
@@ -17,27 +20,58 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a(Yii::t('app', 'Create Text'), ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+        <p>
+            <?= Html::a(Yii::t('app', 'Create Text'), ['create'], ['class' => 'btn btn-success']) ?>
+        </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+//        'filterModel' => $searchModel,
+
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+
 
             'id',
             'group',
-            'key',
-            'value:ntext',
-            'comment',
+
+            'key' => [
+                'attribute' => 'Key',
+                'value' => function (Text $text) {
+                    $const = new \common\models\Key();
+                    return $const->getDeletableName($text->key);
+
+                }
+            ],
+
+            [
+                'class' => EditableColumn::class,
+                'attribute' => 'value',
+                'editableOptions' => [
+                    'inputType' => Editable::INPUT_TEXT,
+                    'formOptions' => [
+                        'action' => Url::to(['change'])
+                    ]
+                ],
+            ],
+
+            [
+                'class' => EditableColumn::class,
+                'attribute' => 'comment',
+                'editableOptions' => [
+                    'inputType' => Editable::INPUT_TEXT,
+                    'formOptions' => [
+                        'action' => Url::to(['change'])
+                    ]
+                ],
+            ],
+
+
             [
                 'class' => ActionColumn::class,
                 'buttons' => [
-                    'delete' => function (Text $text, $url) {
+                    'deletable' => function (Text $text, $url) {
                         if (!$text->deletable) {
                             return null;
                         }
@@ -46,7 +80,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 ]
             ],
         ],
-    ]); ?>
+    ]);
+
+    ?>
+
+    <?php ?>
+
+
+
 
 
 </div>

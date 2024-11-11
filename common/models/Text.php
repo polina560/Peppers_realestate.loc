@@ -51,4 +51,6 @@ class Text extends \yii\db\ActiveRecord
             'comment' => Yii::t('app', 'Comment'),
         ];
     }
+
+
 }

@@ -4,6 +4,7 @@ namespace admin\controllers;
 
 use common\models\Text;
 use common\models\TextSearch;
+use kartik\grid\EditableColumnAction;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -111,7 +112,10 @@ class TextController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        if($model->deletable == 1){
+            $this->findModel($id)->delete();
+        }
 
         return $this->redirect(['index']);
     }
@@ -130,5 +134,16 @@ class TextController extends Controller
         }
 
         throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
+    }
+
+
+    public function actions()
+    {
+        return [
+            'change' => [
+                'class' => EditableColumnAction::class,
+                'modelClass' => Text::class
+            ]
+        ];
     }
 }

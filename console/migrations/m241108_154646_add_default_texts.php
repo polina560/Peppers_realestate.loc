@@ -13,10 +13,10 @@ class m241108_154646_add_default_texts extends Migration
     public function safeUp()
     {
         $this->batchInsert('{{%text}}', ['group', 'key', 'value', 'comment'], [
-            ['contacts', 'main_address '],
-            ['contacts', 'main_phone '],
-            ['contacts', 'sales_office_address '],
-            ['contacts', 'sales_office_phone ', '', '']
+            ['contacts', 'main_address', 'text1', ''],
+            ['contacts', 'main_phone', 'text2', ''],
+            ['contacts', 'sales_office_address', 'text3', ''],
+            ['contacts', 'sales_office_phone', 'text4', '']
         ]);
     }
 

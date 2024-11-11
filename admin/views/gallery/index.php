@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = Yii::t('app', $this->title);
                 'template' => '{images}',
                 'buttons' => [
                     'images' => function ($url, $model) {
-                        return Html::a(Icon::show('image'), ['gallery/images', 'id' => $model->id],['title'=> 'Изображения']);
+                        return Html::a(Icon::show('image'), ['gallery-images/index', 'id_gallery' => $model->id],['title'=> 'Изображения']);
                     },
                 ],
             ],

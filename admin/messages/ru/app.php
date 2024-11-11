@@ -169,6 +169,7 @@ return [
     'Image' => 'Изображение',
     'ID Gallery' => 'ID Галереи',
     'Groups' => 'Группы',
+    'Group' => 'Группа',
     'Create Group' => 'Добавить группу',
     'Create Room' => 'Добавить комнату',
     'Update Apartment: ' => 'Обновить квартиру: ',
@@ -185,7 +186,8 @@ return [
     'Additional Image' => 'Дополнительоне изображение',
     'Yes' => 'Да',
     'No' => 'Нет',
-    'ID Apartment' => 'ID Квартиры'
+    'ID Apartment' => 'ID Квартиры',
+    'Comment' => 'Комментарий'
 
 
 

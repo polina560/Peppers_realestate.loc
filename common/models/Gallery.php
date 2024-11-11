@@ -51,26 +51,7 @@ class Gallery extends \yii\db\ActiveRecord
         return array_column($names, 'name', 'id');
     }
 
-    private static function getMenuItems()
-    {
-        $items = [];
 
-        $code = 'top-menu';
-
-        $query = self::find()->all();
-
-        foreach ($query as $item)
-        {
-            if ( empty($items[$item->parent_id]) )
-            {
-                $items[$items->parent_id] = [];
-            }
-
-            $items[$item->id][] = $item->attributes;
-        }
-
-        return $items;
-    }
 
     public static function viewMenuItems()
     {

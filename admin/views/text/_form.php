@@ -12,11 +12,17 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'key')->textInput(['maxlength' => true]) ?>
+<!--    --><?php //= $form->field($model, 'key')->textInput(['maxlength' => true]) ?>
+
+    <?php
+    $const = new \common\models\Key()?>
+    <?=
+    $form->field($model, 'key')->dropDownList($const->getConstants());
+    ?>
 
     <?= $form->field($model, 'value')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'group')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'group')->dropDownList(['contacts' => 'Контакты', null => 'Без группы']); ?>
 
     <?= $form->field($model, 'comment')->textInput(['maxlength' => true]) ?>
 

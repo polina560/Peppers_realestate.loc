@@ -3,6 +3,7 @@
 namespace admin\controllers;
 
 use admin\models\LoginForm;
+use admin\models\SignupForm;
 use Yii;
 use yii\filters\{AccessControl, VerbFilter};
 use yii\web\{Controller, ErrorAction, Response};
@@ -23,11 +24,11 @@ class SiteController extends Controller
                 'class' => AccessControl::class,
                 'only' => ['logout', 'signup', 'info'],
                 'rules' => [
-//                    [
-//                        'actions' => ['signup'],
-//                        'allow' => true,
-//                        'roles' => ['?'],
-//                    ],
+                    [
+                        'actions' => ['signup'],
+                        'allow' => true,
+                        'roles' => ['?'],
+                    ],
                     [
                         'actions' => ['logout', 'info'],
                         'allow' => true,
@@ -84,6 +85,22 @@ class SiteController extends Controller
 
         $model->password = '';
         return $this->render('login', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionSignup(): Response|string
+    {
+        if (!Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+
+        $model = new SignupForm();
+        if ($model->load(Yii::$app->request->post()) && $model->signup()) {
+            return $this->redirect(Yii::$app->request->referrer);
+        }
+        
+        return $this->render('signup', [
             'model' => $model,
         ]);
     }
