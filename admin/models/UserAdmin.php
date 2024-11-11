@@ -3,6 +3,7 @@
 namespace admin\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 use yii\web\UploadedFile;
 
 /**
@@ -21,7 +22,8 @@ use yii\web\UploadedFile;
 class UserAdmin extends AdminModel
 {
 
-    public const SCENARIO_SIGNUP = 1;
+    public const STATUS_DELETED = 0;
+    public const STATUS_ACTIVE = 10;
     /**
      * {@inheritdoc}
      */
@@ -30,11 +32,12 @@ class UserAdmin extends AdminModel
         return '{{%user_admin}}';
     }
 
-    public function scenarios(): array
+
+
+    public function behaviors(): array
     {
         return [
-            self::SCENARIO_SIGNUP => ['email', 'password'],
-
+            TimestampBehavior::class,
         ];
     }
 
@@ -83,10 +86,16 @@ class UserAdmin extends AdminModel
         $this->auth_key = Yii::$app->security->generateRandomString();
     }
 
+    public function generatePasswordResetToken(): void
+    {
+        $this->password_reset_token = Yii::$app->security->generateRandomString() . '_' . time();
+    }
+
     public function beforeSave($insert): bool
     {
-        $this->auth_key = generateAuthKey();
-        $this->password_hash = setPassword($this->password_hash);
+        $this->auth_key =Yii::$app->security->generateRandomString();
+        $this->password_hash = Yii::$app->security->generatePasswordHash($this->password_hash);
+        $this->password_reset_token = Yii::$app->security->generateRandomString() . '_' . time();
 
 //        if ($this->imageFile instanceof UploadedFile) {
 //            if (!$insert && !empty($this->image)) {

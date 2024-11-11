@@ -7,7 +7,7 @@ use yii\bootstrap5\Html;
  * @var $model admin\models\UserAdmin
  */
 
-$this->title = Yii::t('app', 'Create User Admin');
+$this->title = Yii::t('app', 'Create Admin');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'User Admins'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
