@@ -12,9 +12,9 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?php  $id_gallery = new \common\models\Gallery();
-    ?>
-    <?= $form->field($model, 'id_gallery')->dropDownList($id_gallery->getGalleryNameArray()) ?>
+<!--    --><?php // $id_gallery = new \common\models\Gallery();
+//    ?>
+<!--    --><?php //= $form->field($model, 'id_gallery')->dropDownList($id_gallery->getGalleryNameArray()) ?>
 
 <!--    --><?php //= $form->field($model, 'img')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'imageFile')->fileInput() ?>

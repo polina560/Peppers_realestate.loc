@@ -42,7 +42,7 @@ class Apartment extends \yii\db\ActiveRecord
             [['title', 'price', 'floor'], 'required'],
             [['price', 'floor', 'API_flag'], 'integer'],
             [['title', 'subtitle', 'description', 'img', 'address', 'add_title', 'add_img'], 'string', 'max' => 255],
-            [['imageFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
+            [['imageFile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg'],
             [['addImageFile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'svg'],
         ];
     }

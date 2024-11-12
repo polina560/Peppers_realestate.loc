@@ -51,18 +51,6 @@ class Room extends \yii\db\ActiveRecord
 
 
 
-    public function beforeSave($insert): bool
-    {
-
-
-        $item = \common\models\Apartment::find()->where(['id' => $this->id_apartment])->one();
-        if(!empty($item->add_img)) {
-            $this->uid = $item->add_img;
-        }
-
-        return parent::beforeSave($insert);
-    }
-
     public function getApartments()
     {
         return $this->hasMany(Apartment::class, ['id' => 'id_apartment']);
