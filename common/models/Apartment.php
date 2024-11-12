@@ -89,6 +89,26 @@ class Apartment extends \yii\db\ActiveRecord
         return parent::beforeSave($insert);
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function fields(): array
+    {
+        return [
+            'id',
+            'title',
+            'subtitle',
+            'description',
+            'price',
+            'floor',
+            'img' => fn() => Yii::$app->request->hostInfo . $this->img,
+            'address',
+            'add_title',
+            'add_img' => fn() => Yii::$app->request->hostInfo . $this->add_img,
+//            'API_flag',
+            'rooms'
+        ];
+    }
 
     /**
      * {@inheritdoc}

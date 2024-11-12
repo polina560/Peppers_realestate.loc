@@ -34,6 +34,18 @@ class Gallery extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
+    public function fields(): array
+    {
+        return [
+            'id',
+            'name',
+            'images',
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function attributeLabels()
     {
         return [
@@ -42,6 +54,8 @@ class Gallery extends \yii\db\ActiveRecord
 
         ];
     }
+
+
 
     public function getGalleryNameArray()
     {
@@ -66,6 +80,11 @@ class Gallery extends \yii\db\ActiveRecord
 
         }
         return $results;
+    }
+
+    public function getImages()
+    {
+        return $this->hasMany(GalleryImages::class, ['id_gallery' => 'id']);
     }
 
 

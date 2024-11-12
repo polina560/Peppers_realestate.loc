@@ -28,6 +28,16 @@ class GalleryImages extends \yii\db\ActiveRecord
         return 'GalleryImages';
     }
 
+    public function fields(): array
+    {
+        return [
+
+            'img' => fn() => Yii::$app->request->hostInfo . $this->img,
+            'title',
+            'text'
+
+        ];
+    }
     /**
      * {@inheritdoc}
      */

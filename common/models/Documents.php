@@ -37,6 +37,16 @@ class Documents extends \yii\db\ActiveRecord
         ];
     }
 
+    public function fields(): array
+    {
+        return [
+            'id',
+            'key',
+            'file' => fn() => Yii::$app->request->hostInfo . $this->file,
+
+        ];
+    }
+
     /**
      * {@inheritdoc}
      */

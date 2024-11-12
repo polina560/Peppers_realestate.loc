@@ -49,6 +49,17 @@ class Room extends \yii\db\ActiveRecord
         ];
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function fields(): array
+    {
+        return [
+            'title',
+            'area',
+            'uid',
+        ];
+    }
 
 
     public function getApartments()
